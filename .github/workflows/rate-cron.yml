@@ -23,7 +23,7 @@ jobs:
         run: npm install node-fetch
 
       - name: Run script
-        run: node scripts/update-rates.js
+        run: node scripts/update-rates.mjs
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
           SLOT: ${{ github.event.schedule == '0 5 * * *' && '10_30' || '17_00' }}
