@@ -1,1 +1,17 @@
+{
+  "today": {
+    "date": null,
+    "rates": {
+      "10_30": null,
+      "17_00": null
+    }
+  },
+  "yesterday": {
+    "date": null,
+    "rates": {
+      "10_30": null,
+      "17_00": null
+    }
+  }
+}
 
