@@ -4,7 +4,11 @@
     "date": "2025-12-18",
     "rates": {
       "10_01": null,
-      "17_01": null
+      "17_01": {
+        "gold": null,
+        "silver": null,
+        "updatedAt": "2025-12-18T12:37:18.197Z"
+      }
     }
   },
   "yesterday": {
