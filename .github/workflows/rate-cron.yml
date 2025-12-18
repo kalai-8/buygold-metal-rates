@@ -3,13 +3,12 @@ name: Metal Rate Scheduler
 on:
   schedule:
     - cron: '31 4 * * *'    # 10:01 AM IST
-    - cron: '31 11 * * *'  # 5:01 PM IST
-    
+    - cron: '31 11 * * *'   # 5:01 PM IST
   workflow_dispatch:
 
 permissions:
   contents: write
-  
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -23,14 +22,16 @@ jobs:
         with:
           node-version: 18
 
-      # - name: Install fetch
-      #   run: npm install node-fetch
-
       - name: Run script
         run: node scripts/update-rates.mjs
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
-          SLOT: ${{ github.event.schedule == '31 4 * * *' && '10_01' || '17_01' }}
+          SLOT: ${{ github.event.schedule == "31 4 * * *" && '10_01' || '17_01' }}
+
+      - name: Debug file system
+        run: |
+          ls -l data
+          cat data/metal-store.json
 
       - name: Commit updated rates
         run: |
