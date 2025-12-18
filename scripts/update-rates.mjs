@@ -47,8 +47,8 @@ async function fetchRates() {
 
   // 🔽 reduce payload (ONLY what Angular needs)
   return {
-    gold: data?.rates?.gold ?? null,
-    silver: data?.rates?.silver ?? null,
+    gold: data?.rates?.mcx_gold ?? null,
+    silver: data?.rates?.mcx_silver ?? null,
     updatedAt: new Date().toISOString()
   };
 
