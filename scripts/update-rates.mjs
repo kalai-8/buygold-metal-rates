@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 const STORE_FILE = './data/metal-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest?&authority=mcx&currency=INR&unit=g';
 
-const SLOT = process.env.SLOT; // "10_30" or "17_00"
+const SLOT = process.env.SLOT; // "10_01" or "17_01"
 const API_KEY = process.env.METALS_API_KEY;
 
 function loadStore() {
@@ -21,7 +21,7 @@ function rolloverIfNewDay(store) {
     store.yesterday = store.today;
     store.today = {
       date: today,
-      rates: { "10_30": null, "17_00": null }
+      rates: { "10_01": null, "17_01": null }
     };
   }
 }
@@ -45,14 +45,14 @@ async function run() {
   } catch {
     console.log(`❌ API failed at ${SLOT}`);
 
-    if (SLOT === '10_30') {
-      store.today.rates['10_30'] =
-        store.yesterday?.rates?.['17_00'] || null;
+    if (SLOT === '10_01') {
+      store.today.rates['10_01'] =
+        store.yesterday?.rates?.['17_01'] || null;
     }
 
-    if (SLOT === '17_00') {
-      store.today.rates['17_00'] =
-        store.today?.rates?.['10_30'] || null;
+    if (SLOT === '17_01') {
+      store.today.rates['17_01'] =
+        store.today?.rates?.['10_01'] || null;
     }
   }
 
