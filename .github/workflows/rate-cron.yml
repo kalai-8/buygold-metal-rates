@@ -3,7 +3,7 @@ name: Metal Rate Scheduler
 on:
   schedule:
     - cron: '31 4 * * *'    # 10:01 AM IST
-    - cron: '19 9 * * *'    # 2:49 PM IST (TEST instead of 5:01 PM)
+    - cron: '30 9 * * *'    # 3:00 PM IST (TEST instead of 5:01 PM)
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
           git push
 
   evening:
-    if: github.event.schedule == '19 9 * * *'
+    if: github.event.schedule == '30 9 * * *'
     runs-on: ubuntu-latest
 
     steps:
