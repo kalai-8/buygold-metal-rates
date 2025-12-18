@@ -36,7 +36,7 @@ jobs:
           git push
 
   evening:
-    if: github.event.schedule == '10 9 * * *'
+    if: github.event.schedule == '19 9 * * *'
     runs-on: ubuntu-latest
 
     steps:
