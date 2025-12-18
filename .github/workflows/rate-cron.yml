@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Run metal rate updater
-        run: node scripts/update-metal-rate.js
+        run: node scripts/update-metal-rate.mjs
 
       - name: Commit & push changes
         run: |
