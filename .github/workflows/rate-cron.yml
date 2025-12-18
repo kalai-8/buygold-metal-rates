@@ -1,7 +1,10 @@
-name: Update Metal Rates
+name: Metal Rate Updater
 
 on:
-  workflow_dispatch:   # manual trigger ONLY
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * *'    # 10:30 AM IST
+    - cron: '30 11 * * *'  # 5:00 PM IST
 
 permissions:
   contents: write
@@ -19,12 +22,12 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run metal rate updater
-        run: node scripts/update-rates.mjs
+      - name: Run updater
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
+        run: node scripts/update-rates.mjs
 
-      - name: Commit & push changes
+      - name: Commit & push
         run: |
           git config user.name "rate-bot"
           git config user.email "rate-bot@github.com"
