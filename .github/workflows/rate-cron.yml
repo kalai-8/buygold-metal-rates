@@ -4,7 +4,7 @@ on:
   schedule:
     # - cron: '31 4 * * *'    # 10:01 AM IST
     # - cron: '31 11 * * *'  # 5:01 PM IST
-    - cron: '40 7 * * *'  #  1:10 PM IST (TEST RUN)
+   - cron: '50 7 * * *'     # 1:20 PM IST (TEST RUN)
     
   workflow_dispatch:
 
@@ -32,7 +32,7 @@ jobs:
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
           # SLOT: ${{ github.event.schedule == '31 4 * * *' && '10_01' || '17_01' }}
-           SLOT: 'TEST_13_10'
+          SLOT: 'TEST_13_20'
 
       - name: Commit updated rates
         run: |
