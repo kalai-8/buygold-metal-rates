@@ -10,33 +10,52 @@ permissions:
   contents: write
 
 jobs:
-  update:
+  morning:
+    if: github.event.schedule == '31 4 * * *'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Run script
+      - name: Run morning slot
         run: node scripts/update-rates.mjs
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
-          SLOT: ${{ github.event.schedule == "31 4 * * *" && '10_01' || '17_01' }}
+          SLOT: 10_01
 
-      - name: Debug file system
-        run: |
-          ls -l data
-          cat data/metal-store.json
-
-      - name: Commit updated rates
+      - name: Commit
         run: |
           git config user.name "rate-bot"
           git config user.email "rate-bot@github.com"
           git add data/metal-store.json
-          git commit -m "Update metal rates ($SLOT)" || exit 0
+          git commit -m "Update metal rates (10_01)" || exit 0
+          git push
+
+  evening:
+    if: github.event.schedule == '10 9 * * *'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run evening slot
+        run: node scripts/update-rates.mjs
+        env:
+          METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
+          SLOT: 17_01
+
+      - name: Commit
+        run: |
+          git config user.name "rate-bot"
+          git config user.email "rate-bot@github.com"
+          git add data/metal-store.json
+          git commit -m "Update metal rates (17_01)" || exit 0
           git push
