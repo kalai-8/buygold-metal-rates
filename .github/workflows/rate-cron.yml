@@ -3,7 +3,7 @@ name: Metal Rate Scheduler
 on:
   schedule:
     - cron: '31 4 * * *'    # 10:01 AM IST
-    - cron: '31 11 * * *'   # 5:01 PM IST
+    - cron: '10 9 * * *'    # 2:40 PM IST (TEST instead of 5:01 PM)
   workflow_dispatch:
 
 permissions:
