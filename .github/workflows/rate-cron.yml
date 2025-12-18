@@ -1,10 +1,10 @@
-name: Metal Rate Scheduler
+name: Update Metal Rates
 
 on:
-  workflow_dispatch:   # manual trigger (FIRST trigger)
-  schedule:
-    - cron: '0 5 * * *'    # 10:30 AM IST
-    - cron: '30 11 * * *'  # 5:00 PM IST
+  workflow_dispatch:   # manual trigger ONLY
+
+permissions:
+  contents: write
 
 jobs:
   update:
@@ -19,16 +19,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Run metal rate updater
         run: node scripts/update-rates.mjs
+        env:
+          METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
 
       - name: Commit & push changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "rate-bot"
+          git config user.email "rate-bot@github.com"
           git add data/metal-store.json
           git commit -m "Update metal rates" || echo "No changes"
           git push
