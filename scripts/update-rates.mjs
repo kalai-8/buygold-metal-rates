@@ -30,21 +30,28 @@ function saveStore(store) {
 }
 
 async function fetchRates() {
-  const res = await fetch(API_URL, {
-    headers: {
-      api_key:  API_KEY
-    }
-  });
+   const url =
+    'https://api.metals.dev/v1/metal/authority' +
+    `?api_key=${API_KEY}` +
+    '&authority=mcx' +
+    '&currency=INR' +
+    '&unit=g';
 
-  if (!res.ok) throw new Error('API failed');
+  const res = await fetch(url, { method: 'GET' });
+
+  if (!res.ok) {
+    throw new Error(`API failed: ${res.status} ${res.statusText}`);
+  }
+
   const data = await res.json();
 
   // 🔽 reduce payload (ONLY what Angular needs)
   return {
-    gold: data?.rates?.gold,
-    silver: data?.rates?.silver,
+    gold: data?.rates?.gold ?? null,
+    silver: data?.rates?.silver ?? null,
     updatedAt: new Date().toISOString()
   };
+
 }
 
 async function run() {
