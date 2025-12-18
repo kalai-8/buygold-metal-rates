@@ -2,8 +2,8 @@ name: Metal Rate Scheduler
 
 on:
   schedule:
-    - cron: '31 4 * * *'    # 10:30 AM IST
-    - cron: '31 11 * * *'  # 5:00 PM IST
+    - cron: '31 4 * * *'    # 10:01 AM IST
+    - cron: '31 11 * * *'  # 5:01 PM IST
   workflow_dispatch:
 
 permissions:
