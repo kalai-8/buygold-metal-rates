@@ -5,6 +5,7 @@ const STORE_FILE = './data/metal-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest?&authority=mcx&currency=INR&unit=g';
 
 const SLOT = process.env.SLOT; // "10_01" or "17_01"
+console.log('Running slot:', SLOT);
 const API_KEY = process.env.METALS_API_KEY;
 
 function loadStore() {
