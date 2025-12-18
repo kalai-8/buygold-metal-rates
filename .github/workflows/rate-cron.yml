@@ -2,8 +2,10 @@ name: Metal Rate Scheduler
 
 on:
   schedule:
-    - cron: '31 4 * * *'    # 10:01 AM IST
-    - cron: '31 11 * * *'  # 5:01 PM IST
+    # - cron: '31 4 * * *'    # 10:01 AM IST
+    # - cron: '31 11 * * *'  # 5:01 PM IST
+    - cron: '29 7 * * *'  # 5:01 PM IST
+    
   workflow_dispatch:
 
 permissions:
@@ -29,7 +31,8 @@ jobs:
         run: node scripts/update-rates.mjs
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
-          SLOT: ${{ github.event.schedule == '31 4 * * *' && '10_01' || '17_01' }}
+          # SLOT: ${{ github.event.schedule == '31 4 * * *' && '10_01' || '17_01' }}
+          SLOT: ${{ github.event.schedule == '29 7 * * *' && '10_01' || '17_01' }}
 
       - name: Commit updated rates
         run: |
