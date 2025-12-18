@@ -32,7 +32,7 @@ jobs:
         env:
           METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
           # SLOT: ${{ github.event.schedule == '31 4 * * *' && '10_01' || '17_01' }}
-          SLOT: ${{ github.event.schedule == '40 7 * * *' && '10_01' || '17_01' }}
+           SLOT: 'TEST_13_10'
 
       - name: Commit updated rates
         run: |
