@@ -1,5 +1,4 @@
 import fs from 'fs';
-import fetch from 'node-fetch';
 
 const STORE_FILE = './data/metal-store.json';
 const API_URL =
