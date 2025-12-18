@@ -24,6 +24,7 @@ function loadStore() {
 }
 
 function saveStore(store) {
+  console.log(STORE_FILE, SON.stringify(store, null, 2));
   fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2));
 }
 
