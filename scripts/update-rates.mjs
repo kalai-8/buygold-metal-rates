@@ -32,7 +32,7 @@ function saveStore(store) {
 async function fetchRates() {
   const res = await fetch(API_URL, {
     headers: {
-      Authorization: `Bearer ${API_KEY}`
+      api_key:  ${API_KEY}
     }
   });
 
