@@ -23,8 +23,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install fetch
-        run: npm install node-fetch
+      # - name: Install fetch
+      #   run: npm install node-fetch
 
       - name: Run script
         run: node scripts/update-rates.mjs
