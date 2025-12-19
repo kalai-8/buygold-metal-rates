@@ -1,6 +1,17 @@
 {
   "author": "buygoldcalculator.com",
   "today": {
+    "date": "2025-12-19",
+    "rates": {
+      "10_01": {
+        "gold": 13387.7001,
+        "silver": 203.953,
+        "updatedAt": "2025-12-19T05:25:58.296Z"
+      },
+      "17_01": null
+    }
+  },
+  "yesterday": {
     "date": "2025-12-18",
     "rates": {
       "10_01": null,
@@ -9,13 +20,6 @@
         "silver": 205.9989,
         "updatedAt": "2025-12-18T12:44:41.224Z"
       }
-    }
-  },
-  "yesterday": {
-    "date": "2025-12-17",
-    "rates": {
-      "10_01": null,
-      "17_01": null
     }
   }
 }
