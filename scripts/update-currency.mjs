@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const STORE_FILE = '.data/currency-store.json';
+const STORE_FILE = './data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
 const API_KEY = getActiveApiKey();
 /* ---------- helpers ---------- */
