@@ -4,7 +4,7 @@ const STORE_FILE = '.data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
 const API_KEY = getActiveApiKey();
 /* ---------- helpers ---------- */
-console.log(getActiveApiKey());
+
 function todayIST() {
   const now = new Date();
   now.setMinutes(now.getMinutes() + 330); // +5:30 IST
@@ -18,14 +18,13 @@ async function fetchApi() {
     `?api_key=${API_KEY}` +
     '&currency=INR' +
     '&unit=g';
-  console.log(url);
+  
   const res = await fetch(url, { method: 'GET' });
-  console.log(res);
   if (!res.ok) {
     throw new Error(`API failed: ${res.status} ${res.statusText}`);
   }
   const data = await res.json();
-  console.log(data);
+  return data;
 }
 
 function getActiveApiKey() {
