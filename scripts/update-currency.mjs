@@ -5,15 +5,6 @@ const API_URL = 'https://api.metals.dev/v1/latest';
 const API_KEY = process.env.CUR_API_KEY;
 /* ---------- helpers ---------- */
 
-// function requireEnv(name) {
-//   const value = process.env[name];
-//   if (!value) throw new Error(`Missing env: ${name}`);
-//   return value;
-// }
-
-
-
-/** YYYY-MM-DD in IST */
 function todayIST() {
   const now = new Date();
   now.setMinutes(now.getMinutes() + 330); // +5:30 IST
@@ -27,12 +18,14 @@ async function fetchApi() {
     `?api_key=${API_KEY}` +
     '&currency=INR' +
     '&unit=g';
+  console.log(url);
   const res = await fetch(url, { method: 'GET' });
-
+  console.log(res);
   if (!res.ok) {
     throw new Error(`API failed: ${res.status} ${res.statusText}`);
   }
   const data = await res.json();
+  console.log(data);
 }
 
 /* ---------- main ---------- */
