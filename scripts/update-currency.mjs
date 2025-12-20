@@ -1,7 +1,10 @@
 import fs from 'fs';
+import path from 'path';
 
-const STORE_FILE = './data/currency-store.json';
+const STORE_FILE = path.resolve('data/currency-store.json');
 const API_URL = 'https://api.metals.dev/v1/latest';
+
+/* ---------- helpers ---------- */
 
 function requireEnv(name) {
   const value = process.env[name];
@@ -9,12 +12,12 @@ function requireEnv(name) {
   return value;
 }
 
-const API_KEY = process.env.CUR_API_KEY;
+const API_KEY = requireEnv('CUR_API_KEY');
 
 /** YYYY-MM-DD in IST */
-function todayIST(): string {
+function todayIST() {
   const now = new Date();
-  now.setHours(now.getHours() + 5, now.getMinutes() + 30);
+  now.setMinutes(now.getMinutes() + 330); // +5:30 IST
   return now.toISOString().split('T')[0];
 }
 
@@ -22,19 +25,16 @@ async function fetchApi() {
   const res = await fetch(
     `${API_URL}?api_key=${API_KEY}&currency=INR&unit=g`
   );
-  if (!res.ok) throw new Error('API failed');
+  if (!res.ok) throw new Error(`API failed: ${res.status}`);
   return res.json();
 }
 
-type Store = {
-  today: { date: string | null; data: any | null };
-  yesterday: { date: string | null; data: any | null };
-};
+/* ---------- main ---------- */
 
 async function run() {
   const todayDate = todayIST();
 
-  let store: Store = {
+  let store = {
     today: { date: null, data: null },
     yesterday: { date: null, data: null }
   };
@@ -43,9 +43,9 @@ async function run() {
     store = JSON.parse(fs.readFileSync(STORE_FILE, 'utf8'));
   }
 
-  // ✅ Already updated today
-  if (store.today.date === todayDate && store.today.data) {
-    console.log('Already updated for today. Skipping API call.');
+  // ✅ Already updated today → skip API
+  if (store.today?.date === todayDate && store.today?.data) {
+    console.log('✔ Already updated for today. Skipping API call.');
     return;
   }
 
@@ -53,12 +53,12 @@ async function run() {
     const apiData = await fetchApi();
 
     if (!apiData?.metals || !apiData?.currencies) {
-      console.log('API returned invalid data. Keeping old values.');
+      console.log('⚠ API returned invalid data. Keeping existing values.');
       return;
     }
 
     // 🔁 Move today → yesterday (only if today exists)
-    if (store.today.date && store.today.data) {
+    if (store.today?.date && store.today?.data) {
       store.yesterday = { ...store.today };
     }
 
@@ -72,13 +72,13 @@ async function run() {
       }
     };
 
+    fs.mkdirSync(path.dirname(STORE_FILE), { recursive: true });
     fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2));
-    console.log('Updated today & yesterday successfully');
 
+    console.log('✅ Updated today & yesterday successfully');
   } catch (err) {
-    console.error('API error. Using existing data.', err);
+    console.error('❌ API error. Using existing data.', err);
   }
 }
 
 run();
-
