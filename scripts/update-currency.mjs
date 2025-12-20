@@ -3,7 +3,7 @@ import fs from 'fs';
 const STORE_FILE = './data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
 
-function requireEnv(name: string): string {
+function requireEnv(name): string {
   const value = process.env[name];
   if (!value) throw new Error(`Missing env: ${name}`);
   return value;
