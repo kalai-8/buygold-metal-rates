@@ -60,9 +60,6 @@ async function run() {
 
   try {
     const apiData = await fetchApi();
-    console.log('apiData', apiData);
-    console.log('!apiData?.metals', !apiData?.metals);
-    console.log('!apiData?.currencies', !apiData?.currencies);
     if (!apiData?.metals || !apiData?.currencies) {
       console.log('⚠ API returned invalid data. Keeping existing values.');
       return;
