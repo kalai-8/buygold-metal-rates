@@ -28,6 +28,7 @@ jobs:
       - name: Run updater script
         env:
           CUR_API_KEY: ${{ secrets.CUR_API_KEY }}
+          METALS_API_KEY: ${{ secrets.METALS_API_KEY }}
         run: |
           node scripts/update-currency.mjs
 
