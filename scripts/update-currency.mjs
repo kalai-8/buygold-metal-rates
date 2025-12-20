@@ -24,6 +24,7 @@ async function fetchApi() {
   const res = await fetch(
     `${API_URL}?api_key=${API_KEY}&currency=INR&unit=g`
   );
+  console.log(res);
   if (!res.ok) throw new Error(`API failed: ${res.status}`);
   return res.json();
 }
