@@ -28,7 +28,7 @@ async function fetchApi() {
   console.log(data);
 }
 
-function getActiveApiKey(): string {
+function getActiveApiKey() {
   const today = new Date().getDate(); // 1–31
 
   if (today <= 15) {
