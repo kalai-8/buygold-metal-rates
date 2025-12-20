@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const STORE_FILE = '.data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
-const API_KEY = process.env.CUR_API_KEY;
+const API_KEY = getActiveApiKey();
 /* ---------- helpers ---------- */
 
 function todayIST() {
@@ -28,6 +28,15 @@ async function fetchApi() {
   console.log(data);
 }
 
+function getActiveApiKey(): string {
+  const today = new Date().getDate(); // 1–31
+
+  if (today <= 15) {
+    return process.env.CUR_API_KEY!;
+  }
+
+  return process.env.METALS_API_KEY!;
+}
 /* ---------- main ---------- */
 
 async function run() {
