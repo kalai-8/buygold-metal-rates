@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 const STORE_FILE = './data/metal-store.json';
-const API_KEY = process.env.METALS_API_KEY;
+const API_KEY = getActiveApiKey();
 const API_URL =
   'https://api.metals.dev/v1/latest?authority=mcx&currency=INR&unit=g';
 
@@ -19,6 +19,16 @@ function getSlot() {
 
   if (now >= '10:01' && now < '17:01') return '10_01';
   return '17_01';
+}
+
+function getActiveApiKey(): string {
+  const today = new Date().getDate(); // 1–31
+
+  if (today <= 15) {
+    return process.env.CUR_API_KEY!;
+  }
+
+  return process.env.METALS_API_KEY!;
 }
 
 function loadStore() {
