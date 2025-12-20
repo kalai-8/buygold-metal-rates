@@ -1,1 +1,19 @@
+{
+  "today": {
+    "date": "2025-12-20",
+    "data": {
+      "metals": {},
+      "currencies": {},
+      "timestamps": {}
+    }
+  },
+  "yesterday": {
+    "date": "2025-12-19",
+    "data": {
+      "metals": {},
+      "currencies": {},
+      "timestamps": {}
+    }
+  }
+}
 
