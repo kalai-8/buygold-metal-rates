@@ -4,7 +4,7 @@ const STORE_FILE = '.data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
 const API_KEY = getActiveApiKey();
 /* ---------- helpers ---------- */
-
+console.log(getActiveApiKey());
 function todayIST() {
   const now = new Date();
   now.setMinutes(now.getMinutes() + 330); // +5:30 IST
