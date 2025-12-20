@@ -1,19 +1,12 @@
 {
   "today": {
-    "date": "",
-    "data": {
-      "metals": {},
-      "currencies": {},
-      "timestamps": {}
-    }
+    "date": null,
+    "data": null
   },
   "yesterday": {
-    "date": "",
-    "data": {
-      "metals": {},
-      "currencies": {},
-      "timestamps": {}
-    }
-  }
+    "date": null,
+    "data": null
+  },
+   "author": "buygoldcalculator.com",
 }
 
