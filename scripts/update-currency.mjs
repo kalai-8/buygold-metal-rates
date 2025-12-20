@@ -37,14 +37,14 @@ function getActiveApiKey() {
   return process.env.METALS_API_KEY;
 }
 /* ---------- main ---------- */
+function loadStore() {
+  return JSON.parse(fs.readFileSync(STORE_FILE, 'utf8'));
+}
 
 async function run() {
   const todayDate = todayIST();
 
-  let store = {
-    today: { date: null, data: null },
-    yesterday: { date: null, data: null }
-  };
+  let store = loadStore();
 
   if (fs.existsSync(STORE_FILE)) {
     store = JSON.parse(fs.readFileSync(STORE_FILE, 'utf8'));
