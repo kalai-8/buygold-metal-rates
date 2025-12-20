@@ -9,7 +9,7 @@ function requireEnv(name: string): string {
   return value;
 }
 
-const API_KEY = requireEnv('CUR_API_KEY');
+const API_KEY = process.env.CUR_API_KEY;
 
 /** YYYY-MM-DD in IST */
 function todayIST(): string {
