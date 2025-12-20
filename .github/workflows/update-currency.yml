@@ -29,7 +29,7 @@ jobs:
         env:
           CURRENCY_API_KEY: ${{ secrets.CUR_API_KEY }}
         run: |
-          node scripts/update-currency-store.mjs
+          node scripts/update-currency.mjs
 
       - name: Commit & push changes
         run: |
