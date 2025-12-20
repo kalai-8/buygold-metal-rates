@@ -1,18 +1,17 @@
 import fs from 'fs';
-import path from 'path';
 
-const STORE_FILE = path.resolve('data/currency-store.json');
+const STORE_FILE = '.data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
-
+const API_KEY = process.env.CUR_API_KEY;
 /* ---------- helpers ---------- */
 
-function requireEnv(name) {
-  const value = process.env[name];
-  if (!value) throw new Error(`Missing env: ${name}`);
-  return value;
-}
+// function requireEnv(name) {
+//   const value = process.env[name];
+//   if (!value) throw new Error(`Missing env: ${name}`);
+//   return value;
+// }
 
-const API_KEY = requireEnv('CUR_API_KEY');
+
 
 /** YYYY-MM-DD in IST */
 function todayIST() {
