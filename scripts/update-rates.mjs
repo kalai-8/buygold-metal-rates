@@ -21,7 +21,7 @@ function getSlot() {
   return '17_01';
 }
 
-function getActiveApiKey(): string {
+function getActiveApiKey() {
   const today = new Date().getDate(); // 1–31
 
   if (today <= 15) {
