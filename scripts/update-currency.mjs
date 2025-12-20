@@ -40,7 +40,9 @@ function getActiveApiKey() {
 function loadStore() {
   return JSON.parse(fs.readFileSync(STORE_FILE, 'utf8'));
 }
-
+function saveStore(store) {
+  fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2));
+}
 async function run() {
   const todayDate = todayIST();
 
@@ -81,9 +83,7 @@ async function run() {
       }
     };
 
-    fs.mkdirSync(path.dirname(STORE_FILE), { recursive: true });
-    fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2));
-
+    saveStore(store);
     console.log('✅ Updated today & yesterday successfully');
   } catch (err) {
     console.error('❌ API error. Using existing data.', err);
