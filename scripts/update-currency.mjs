@@ -32,10 +32,10 @@ function getActiveApiKey() {
   const today = new Date().getDate(); // 1–31
 
   if (today <= 15) {
-    return process.env.CUR_API_KEY!;
+    return process.env.CUR_API_KEY;
   }
 
-  return process.env.METALS_API_KEY!;
+  return process.env.METALS_API_KEY;
 }
 /* ---------- main ---------- */
 
