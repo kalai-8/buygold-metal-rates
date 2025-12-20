@@ -21,12 +21,18 @@ function todayIST() {
 }
 
 async function fetchApi() {
-  const res = await fetch(
-    `${API_URL}?api_key=${API_KEY}&currency=INR&unit=g`
-  );
-  console.log(res);
-  if (!res.ok) throw new Error(`API failed: ${res.status}`);
-  return res.json();
+
+  const url =
+    'https://api.metals.dev/v1/latest/' +
+    `?api_key=${API_KEY}` +
+    '&currency=INR' +
+    '&unit=g';
+  const res = await fetch(url, { method: 'GET' });
+
+  if (!res.ok) {
+    throw new Error(`API failed: ${res.status} ${res.statusText}`);
+  }
+  const data = await res.json();
 }
 
 /* ---------- main ---------- */
