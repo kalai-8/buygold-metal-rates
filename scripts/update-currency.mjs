@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const STORE_FILE = path.join(process.cwd(), 'data/currency-store.json');
+const STORE_FILE = './data/currency-store.json';
 const API_URL = 'https://api.metals.dev/v1/latest';
 
 function requireEnv(name: string): string {
