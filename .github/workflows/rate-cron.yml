@@ -1,4 +1,4 @@
-name: Metal Rate Updater
+name: Metal Rate Updater - Old
 
 on:
   workflow_dispatch:
